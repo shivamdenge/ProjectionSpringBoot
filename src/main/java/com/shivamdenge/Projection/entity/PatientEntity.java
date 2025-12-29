@@ -13,9 +13,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@ToString
 @Getter
 @Setter
+@ToString
 public class PatientEntity {
 
     @Id
@@ -31,15 +31,15 @@ public class PatientEntity {
     private String gender;
 
     @Enumerated(value = EnumType.STRING)
-    private BloodGroupType bloodGroup;
+    private BloodGroupType bloodGroupType;
 
     @CreationTimestamp
     private LocalDateTime createdAt;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "patient_insurance", unique = true)  //Join should be on Owning side
     private Insurance insurance; // owning side
 
-    @OneToMany(mappedBy = "patient") //inverse Side
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL) //inverse Side
     private Set<Appointment> appointments = new HashSet<>();
 }
