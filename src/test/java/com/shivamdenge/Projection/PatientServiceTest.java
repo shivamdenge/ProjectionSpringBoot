@@ -20,14 +20,19 @@ public class PatientServiceTest {
     //Project using Interface & Using this we can not modify data
     @Test
     public void testPatient() {
-        // List<PatientEntity> patientEntities = patientRepository.findAll();
+//        // List<PatientEntity> patientEntities = patientRepository.findAll();
+//
+//        List<IPatientInfo> patientEntities = patientRepository.getAllPatientInfo();
+//
+//        for (IPatientInfo p : patientEntities) {
+//            System.out.println("ID: " + p.getId() + ", Name: " + p.getName() + ", Email: " + p.getEmail());
+//        }
 
-        List<IPatientInfo> patientEntities = patientRepository.getAllPatientInfo();
+        List<PatientEntity> patientEntityList = patientRepository.findAll();
 
-        for (IPatientInfo p : patientEntities) {
-            System.out.println("ID: " + p.getId() + ", Name: " + p.getName() + ", Email: " + p.getEmail());
+        for (var p : patientEntityList) {
+            System.out.println(p);
         }
-
     }
 
 

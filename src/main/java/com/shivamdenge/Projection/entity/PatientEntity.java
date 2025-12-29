@@ -36,10 +36,11 @@ public class PatientEntity {
     @CreationTimestamp
     private LocalDateTime createdAt;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)  // OrphanRemoval declare only at Parent side
     @JoinColumn(name = "patient_insurance", unique = true)  //Join should be on Owning side
     private Insurance insurance; // owning side
 
-    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL) //inverse Side
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL,fetch = FetchType.EAGER) //inverse Side
+    //@ToString.Exclude
     private Set<Appointment> appointments = new HashSet<>();
 }
