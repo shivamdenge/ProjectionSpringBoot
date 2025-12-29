@@ -1,5 +1,6 @@
 package com.shivamdenge.Projection.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -11,6 +12,8 @@ import java.time.LocalDateTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
+@ToString
 public class Appointment {
 
     @Id
@@ -25,10 +28,14 @@ public class Appointment {
 
     @ManyToOne // Many appointment to one patient
     @JoinColumn(nullable = false)
+    @ToString.Exclude
+    @JsonIgnore
     private PatientEntity patient;
 
     @ManyToOne
     @JoinColumn(nullable = false)
+    @ToString.Exclude
+    @JsonIgnore
     private Doctor doctor;
 }
 
