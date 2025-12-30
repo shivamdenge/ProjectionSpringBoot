@@ -19,8 +19,12 @@ public class PatientTest {
     @Test
     public void testPatient1() {
         List<IPatientInfo> patientInfos = patientRepository.getPatientDetails1();
-        for (IPatientInfo p : patientInfos)
-            System.out.println("ID :" + p.getId() + " NAME :" + p.getName());
+        for (IPatientInfo p : patientInfos) {
+            System.out.println(
+                    "Id :" + p.getId() +
+                            " Name :" + p.getName() +
+                            " Email :" + p.getEmail());
+        }
     }
 
     @Test
@@ -33,20 +37,21 @@ public class PatientTest {
 
     @Test
     public void testPatient3() {
-        var updatedRows = patientRepository.updatePatientNameWithId("Shivam Denge", 1L);
-        System.out.println("UpdatedRows :" + updatedRows);
+        List<BloodGroupStats> bloodGroupStats = patientRepository.getBloodGroupStats();
+        for (BloodGroupStats b : bloodGroupStats) {
+            System.out.println(b);
+        }
     }
 
     @Test
     public void testPatient4() {
-        var updatedRows = patientRepository.deletePatientWithId(1L);
-        System.out.println("UpdatedRows :" + updatedRows);
+        int updatedRow = patientRepository.updatePatientNameWithId("Shivam Denge", 1L);
+        System.out.println("Rows Affected :" + updatedRow);
     }
 
     @Test
     public void testPatient5() {
-        List<BloodGroupStats> bloodGroupStats = patientRepository.getBloodGroupStats();
-        for (BloodGroupStats b : bloodGroupStats)
-            System.out.println(b);
+        int updatedRow = patientRepository.deletePatientWithId(1L);
+        System.out.println("Rows Affected :" + updatedRow);
     }
 }

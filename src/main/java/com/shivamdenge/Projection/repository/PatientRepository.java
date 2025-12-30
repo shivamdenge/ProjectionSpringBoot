@@ -11,28 +11,43 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.awt.image.ImageProducer;
 import java.util.List;
 
 @Repository
 public interface PatientRepository extends JpaRepository<Patient, Long> {
 
-    @Query("Select p.id as id ,p.name as name from Patient p ")
+    @Query("""
+            Select p.id as id, p.name as name, p.email as email from Patient p
+            """)
     List<IPatientInfo> getPatientDetails1();
 
+
     @Query("""
-                select new com.shivamdenge.Projection.dto.CPatientInfo(
-                    p.id,
-                    p.name,
-                    p.email
-                )
+            select new com.shivamdenge.Projection.dto.CPatientInfo(
+                p.id,
+                p.name,
+                p.email
+            )
                 from Patient p
             """)
     List<CPatientInfo> getPatientDetails2();
 
+    @Query("""
+            select new com.shivamdenge.Projection.dto.BloodGroupStats(
+                p.bloodGroupType,
+                count(p)
+            )
+                from Patient p
+                Group By p.bloodGroupType
+                Order by Count(p) desc
+            """)
+    List<BloodGroupStats> getBloodGroupStats();
+
     @Modifying
     @Transactional
     @Query("""
-            UPDATE Patient p set p.name= :name where id= :id
+            UPDATE Patient p set p.name= :name where p.id= :id
             """)
     int updatePatientNameWithId(@Param("name") String name, @Param("id") Long id);
 
@@ -40,18 +55,7 @@ public interface PatientRepository extends JpaRepository<Patient, Long> {
     @Modifying
     @Transactional
     @Query("""
-            DELETE from Patient p where p.id = :id
+            DELETE from Patient p where id =: id
             """)
     int deletePatientWithId(@Param("id") Long id);
-
-
-    @Query("""
-            select new com.shivamdenge.Projection.dto.BloodGroupStats(
-            p.bloodGroupType,
-            count(p)
-            )
-             from Patient p
-             Group By (bloodGroupType)
-            """)
-    List<BloodGroupStats> getBloodGroupStats();
 }
