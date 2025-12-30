@@ -37,5 +37,5 @@ public interface PatientRepository extends JpaRepository<PatientEntity, Long> {
     @Modifying
     @Transactional
     @Query("UPDATE PatientEntity p set p.name= :name where p.id= :id")
-    int updatePatientNameWithId(@Param("name") String name, @Param("id") Long id); //return type int coz it returns numbers of row afftected
+    int updatePatientNameWithId(@Param("name") String name, @Param("id") Long id); //return type int coz it returns numbers of row affected
 }
