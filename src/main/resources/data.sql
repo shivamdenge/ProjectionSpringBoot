@@ -1,4 +1,4 @@
-INSERT INTO patient_entity (name, birth_date, email, gender, blood_group_type) VALUES
+INSERT INTO patient (name, birth_date, email, gender, blood_group_type) VALUES
 ('Rahul Sharma', '1998-05-12', 'rahul.sharma@gmail.com', 'Male',  'A_POSITIVE'),
 ('Anjali Patil', '2000-01-22', 'anjali.patil@gmail.com', 'Female',  'B_POSITIVE'),
 ('Amit Verma', '1996-11-03', 'amit.verma@gmail.com', 'Male',  'O_POSITIVE'),
@@ -12,9 +12,3 @@ INSERT INTO patient_entity (name, birth_date, email, gender, blood_group_type) V
 ('Riya Gupta', '1999-10-05', 'riya.g@gmail.com', 'Female',  'O_POSITIVE');
 
 
-INSERT INTO doctor (name, specialization, email) VALUES
-('Dr. Amit Sharma', 'Cardiology', 'amit.sharma@hospital.com'),
-('Dr. Neha Verma', 'Dermatology', 'neha.verma@hospital.com'),
-('Dr. Rahul Mehta', 'Orthopedics', 'rahul.mehta@hospital.com'),
-('Dr. Priya Kulkarni', 'Gynecology', 'priya.kulkarni@hospital.com'),
-('Dr. Suresh Iyer', 'Neurology', 'suresh.iyer@hospital.com');
