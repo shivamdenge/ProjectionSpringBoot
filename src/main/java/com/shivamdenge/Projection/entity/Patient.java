@@ -8,6 +8,8 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -19,6 +21,8 @@ public class Patient {
     private String name;
     private String gender;
     private String email;
+
+
     private LocalDate birthDate;
 
     @Enumerated(value = EnumType.STRING)
@@ -26,5 +30,11 @@ public class Patient {
 
     @CreationTimestamp
     private LocalDateTime createdAt;
+
+    @OneToOne
+    private Insurance insurance;
+
+    @OneToMany(mappedBy = "patient") // Inverse Side of Appointments
+    private Set<Appointment> appointments = new HashSet<>();
 
 }
