@@ -16,7 +16,8 @@ import java.util.Set;
 @Setter
 public class Patient {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String gender;
@@ -31,10 +32,10 @@ public class Patient {
     @CreationTimestamp
     private LocalDateTime createdAt;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "patient_insurance", unique = true)
     private Insurance insurance;
 
-    @OneToMany(mappedBy = "patient") // Inverse Side of Appointments
+    @OneToMany(mappedBy = "patient" , cascade = CascadeType.ALL)
     private Set<Appointment> appointments = new HashSet<>();
-
 }

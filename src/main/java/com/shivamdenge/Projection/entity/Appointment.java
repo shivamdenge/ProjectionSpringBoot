@@ -1,10 +1,7 @@
 package com.shivamdenge.Projection.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -13,9 +10,11 @@ import java.time.LocalDateTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Appointment {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private LocalDateTime appointmentTime;
@@ -23,9 +22,11 @@ public class Appointment {
     private String status;
 
 
-    @ManyToOne
+    @ManyToOne()
     private Patient patient;
 
     @ManyToOne
     private Doctor doctor;
+
+
 }

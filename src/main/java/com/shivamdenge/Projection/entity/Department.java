@@ -28,11 +28,12 @@ public class Department {
     @CreationTimestamp
     private LocalDateTime createdAt;
 
-   @OneToOne
-   @JoinColumn(nullable = false)
+    @OneToOne
     private Doctor headDoctor;
 
-   @ManyToMany
+    @ManyToMany
     private Set<Doctor> doctors = new HashSet<>();
+
+
 
 }

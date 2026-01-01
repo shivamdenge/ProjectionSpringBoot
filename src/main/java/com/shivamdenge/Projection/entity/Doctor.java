@@ -1,10 +1,7 @@
 package com.shivamdenge.Projection.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
@@ -16,6 +13,7 @@ import java.util.Set;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Doctor {
 
     @Id
@@ -36,5 +34,4 @@ public class Doctor {
 
     @OneToMany(mappedBy = "doctor")
     private Set<Appointment> appointments = new HashSet<>();
-
 }

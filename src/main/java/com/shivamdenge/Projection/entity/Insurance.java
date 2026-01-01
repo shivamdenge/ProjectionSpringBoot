@@ -1,8 +1,7 @@
 package com.shivamdenge.Projection.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
@@ -11,6 +10,9 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class Insurance {
 
     @Id
@@ -30,8 +32,10 @@ public class Insurance {
     @Column(nullable = false)
     private LocalDateTime createdAt;
 
-
-    @OneToOne(mappedBy = "insurance") // Inverse Side of Insurance
+    @OneToOne(mappedBy = "insurance")
+    @JoinColumn(nullable = false)
     private Patient patient;
+
+
 
 }
