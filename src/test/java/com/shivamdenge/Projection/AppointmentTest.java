@@ -2,8 +2,6 @@ package com.shivamdenge.Projection;
 
 import com.shivamdenge.Projection.entity.Appointment;
 import com.shivamdenge.Projection.entity.Doctor;
-import com.shivamdenge.Projection.repository.AppointmentRepository;
-import com.shivamdenge.Projection.repository.DoctorRepository;
 import com.shivamdenge.Projection.service.AppointmentService;
 import com.shivamdenge.Projection.service.DoctorService;
 import org.junit.jupiter.api.Test;
